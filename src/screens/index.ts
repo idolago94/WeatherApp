@@ -1,7 +1,7 @@
-import { CitiesScreen } from "./CitiesScreen";
+import { CitiesListScreen } from "./CitiesListScreen";
 import { CityDetailsScreen } from './CityDetailsScreen'
 
 export {
-    CitiesScreen,
+    CitiesListScreen,
     CityDetailsScreen
 }

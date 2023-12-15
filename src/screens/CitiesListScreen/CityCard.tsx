@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { City } from "@types";
 import { Text, View } from "@components/common";
 import { ImageBackground, StyleSheet, TouchableOpacity } from "react-native";
-import { Colors, ScreenNames } from "@constants";
+import { Colors, GlobalStyles, ScreenNames } from "@constants";
 import { useAppNavigation } from "@hooks";
 
 export const CityCard: React.FC<City> = ({ name, country, description, image }) => {
@@ -14,9 +14,9 @@ export const CityCard: React.FC<City> = ({ name, country, description, image }) 
     }
 
     return (
-        <TouchableOpacity onPress={onCardPress} style={styles.flex1} activeOpacity={.6}>
-            <ImageBackground source={imageUri} resizeMode="cover" style={styles.flex1} borderRadius={9}>
-                <View style={styles.test}>
+        <TouchableOpacity onPress={onCardPress} style={GlobalStyles.flex1} activeOpacity={.6}>
+            <ImageBackground source={imageUri} resizeMode="cover" style={GlobalStyles.flex1} borderRadius={9}>
+                <View style={styles.content}>
                     <Text style={[styles.txt, styles.nameText]}>{name}</Text>
                     <Text style={[styles.txt, styles.countryText]}>{country}</Text>
                     <Text style={[styles.txt]}>{description}</Text>
@@ -27,10 +27,7 @@ export const CityCard: React.FC<City> = ({ name, country, description, image }) 
 }
 
 const styles = StyleSheet.create({
-    flex1: {
-        flex: 1,
-    },
-    test: {
+    content: {
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',

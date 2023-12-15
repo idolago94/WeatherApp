@@ -5,7 +5,7 @@ import { useCities } from "@hooks";
 import { CityCard } from "./CityCard";
 import { City } from "@types";
 
-export const CitiesScreen = () => {
+export const CitiesListScreen = () => {
     const cities = useCities()
 
     const CityItem = ({ item }: ListRenderItemInfo<City>) => (
@@ -29,7 +29,5 @@ const styles = StyleSheet.create({
         margin: 7,
         height: 100,
         aspectRatio: 1,
-        // borderRadius: 9,
-        // overflow: 'hidden'
     }
 });

@@ -1,4 +1,4 @@
 export enum ScreenNames {
-    CITIES = 'CitiesScreen',
+    CITIES = 'CitiesListScreen',
     CITY_DETAILS = 'CityDetailsScreen'
 }
