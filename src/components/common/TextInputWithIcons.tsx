@@ -34,7 +34,7 @@ export const TextInputWithIcons = forwardRef<TextInput, TextInputProps & InputEx
                 ref={ref}
                 style={[styles.input, props.style]}
             />
-            {rightIcon && <Icon {...rightIcon}/>}
+            {rightIcon && <Icon {...rightIcon} />}
         </View>
     )
 })

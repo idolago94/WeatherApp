@@ -1,27 +1,57 @@
 import React, { useMemo, useRef, useState } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, TextInput } from "react-native";
-import { TextInputWithIcons, View } from "@components/common";
-import { useCities } from "@hooks";
+import { Text, TextInputWithIcons, View } from "@components/common";
+import { useCities, useStrings } from "@hooks";
 import { CityCard } from "./CityCard";
 import { City } from "@types";
 import { EmptyListMessage } from "./EmptyListMessage";
-import { GlobalStyles } from "../../constants/Styles";
+import { GlobalStyles } from "@constants";
+import ModalSelector from 'react-native-modal-selector'
+import { SortKeys, getSortFunctionByKey } from "@utils";
+
+type SortItem = {
+    key: string
+    component: React.ReactElement
+}
 
 export const CitiesListScreen = () => {
+    const strings = useStrings()
     const searchInputRef = useRef<TextInput>(null)
-    const [searchField, setSearchField] = useState('')
-    const cities = useCities((city) => (!searchField || city.name.includes(searchField) || city.country.includes(searchField)))
+    const sortPickerRef = useRef<ModalSelector<SortItem>>(null)
+    const [searchField, setSearchField] = useState<string>('')
+    const [sortSelected, setSortSelected] = useState<string>('')
+
+    const cities = useCities(
+        (city) => (!searchField || city.name.includes(searchField) || city.country.includes(searchField)),
+        getSortFunctionByKey(sortSelected)
+    )
+
+    const isSortSelected = (key: string) => (sortSelected === key ? 'bold' : '400')
+
+    const sortOptions = useMemo<SortItem[]>(() => ([
+        { key: SortKeys.NAME, component: <Text style={{ fontWeight: isSortSelected(SortKeys.NAME) }}>{strings.sort_by_city_name}</Text> },
+        { key: SortKeys.TLV, component: <Text style={{ fontWeight: isSortSelected(SortKeys.TLV) }}>{strings.sort_by_close_to_tlv}</Text> }
+    ]), [sortSelected])
 
     const searchFieldIcons = useMemo(() => ({
         left: {
             source: require("@assets/search.svg"),
             size: 20,
             onPress: () => { searchInputRef.current?.focus() }
+        },
+        right: {
+            source: require("@assets/sort.svg"),
+            size: 20,
+            onPress: () => { sortPickerRef.current?.open() }
         }
-    }), [searchInputRef])
+    }), [searchInputRef, sortPickerRef])
 
-    const onSearch = (txt: string) => {
+    const onSearchChange = (txt: string) => {
         setSearchField(txt)
+    }
+
+    const onSortChange = (item: SortItem) => {
+        setSortSelected(item.key)
     }
 
     const CityItem = ({ item }: ListRenderItemInfo<City>) => (
@@ -33,7 +63,7 @@ export const CitiesListScreen = () => {
     return <View>
         <TextInputWithIcons
             ref={searchInputRef}
-            onChangeText={onSearch}
+            onChangeText={onSearchChange}
             icons={searchFieldIcons}
             clearButtonMode='always'
         />
@@ -44,6 +74,12 @@ export const CitiesListScreen = () => {
             keyExtractor={(_, index) => index.toString()}
             ListEmptyComponent={EmptyListMessage}
             contentContainerStyle={GlobalStyles.flexGrow}
+        />
+        <ModalSelector
+            ref={sortPickerRef}
+            data={sortOptions}
+            onChange={onSortChange}
+            customSelector={<View />}
         />
     </View>
 }

@@ -1,3 +1,5 @@
 {
-    "empty_cities_list": "Cities not found!"
+    "empty_cities_list": "Cities not found!",
+    "sort_by_city_name": "City name",
+    "sort_by_close_to_tlv": "Close to TLV"
 }

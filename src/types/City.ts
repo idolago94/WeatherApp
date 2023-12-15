@@ -8,7 +8,7 @@ export type City = {
     coords: CityCoords
 }
 
-type CityCoords = {
+export type CityCoords = {
     lat: number
     lng: number
 }
