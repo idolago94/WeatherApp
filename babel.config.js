@@ -9,6 +9,8 @@ module.exports = {
           '@hooks': './src/hooks',
           '@navigators': './src/navigators',
           '@screens': './src/screens',
+          '@content': './src/content',
+          '@types': './src/types',
         }
       }
     ]

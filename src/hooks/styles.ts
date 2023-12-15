@@ -19,7 +19,7 @@ export const useStyle = (): UseStyle => {
         },
         view: {
             flex: 1,
-            backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
+            backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
         },
         text: {
             color: isDarkMode ? Colors.lighter : Colors.darker

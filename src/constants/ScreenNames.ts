@@ -1,4 +1,4 @@
-export const ScreenNames = {
-    CITIES: 'CitiesScreen',
-    CITY_DETAILS: 'CityDetailsScreen'
+export enum ScreenNames {
+    CITIES = 'CitiesScreen',
+    CITY_DETAILS = 'CityDetailsScreen'
 }
