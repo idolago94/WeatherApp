@@ -6,11 +6,10 @@
  */
 
 import React from 'react';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { RootNavigator } from './navigators';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { useStyle } from './hooks';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootNavigator } from '@navigators';
+import { useStyle } from '@hooks';
 
 function App(): React.JSX.Element {
   const styles = useStyle()
