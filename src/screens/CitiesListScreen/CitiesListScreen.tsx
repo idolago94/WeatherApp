@@ -1,12 +1,19 @@
-import React from "react";
-import { FlatList, Image, ListRenderItemInfo, StyleSheet } from "react-native";
-import { Text, View } from "@components/common";
+import React, { useState } from "react";
+import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
+import { TextInputWithIcon, View } from "@components/common";
 import { useCities } from "@hooks";
 import { CityCard } from "./CityCard";
 import { City } from "@types";
+import { EmptyListMessage } from "./EmptyListMessage";
+import { GlobalStyles } from "../../constants/Styles";
 
 export const CitiesListScreen = () => {
-    const cities = useCities()
+    const [searchField, setSearchField] = useState('')
+    const cities = useCities((city) => (!searchField || city.name.includes(searchField) || city.country.includes(searchField)))
+
+    const onSearch = (txt: string) => {
+        setSearchField(txt)
+    }
 
     const CityItem = ({ item }: ListRenderItemInfo<City>) => (
         <View style={styles.cardWrap}>
@@ -15,11 +22,18 @@ export const CitiesListScreen = () => {
     )
 
     return <View>
+        <TextInputWithIcon
+            onChangeText={onSearch}
+            iconSource={require("@assets/search.svg")}
+            clearButtonMode='always'
+        />
         <FlatList
             data={cities}
             renderItem={CityItem}
             numColumns={2}
             keyExtractor={(_, index) => index.toString()}
+            ListEmptyComponent={EmptyListMessage}
+            contentContainerStyle={GlobalStyles.flexGrow}
         />
     </View>
 }
@@ -27,7 +41,6 @@ export const CitiesListScreen = () => {
 const styles = StyleSheet.create({
     cardWrap: {
         margin: 7,
-        height: 100,
         aspectRatio: 1,
     }
 });
