@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
-import { TextInputWithIcon, View } from "@components/common";
+import React, { useMemo, useRef, useState } from "react";
+import { FlatList, ListRenderItemInfo, StyleSheet, TextInput } from "react-native";
+import { TextInputWithIcons, View } from "@components/common";
 import { useCities } from "@hooks";
 import { CityCard } from "./CityCard";
 import { City } from "@types";
@@ -8,8 +8,17 @@ import { EmptyListMessage } from "./EmptyListMessage";
 import { GlobalStyles } from "../../constants/Styles";
 
 export const CitiesListScreen = () => {
+    const searchInputRef = useRef<TextInput>(null)
     const [searchField, setSearchField] = useState('')
     const cities = useCities((city) => (!searchField || city.name.includes(searchField) || city.country.includes(searchField)))
+
+    const searchFieldIcons = useMemo(() => ({
+        left: {
+            source: require("@assets/search.svg"),
+            size: 20,
+            onPress: () => { searchInputRef.current?.focus() }
+        }
+    }), [searchInputRef])
 
     const onSearch = (txt: string) => {
         setSearchField(txt)
@@ -22,9 +31,10 @@ export const CitiesListScreen = () => {
     )
 
     return <View>
-        <TextInputWithIcon
+        <TextInputWithIcons
+            ref={searchInputRef}
             onChangeText={onSearch}
-            iconSource={require("@assets/search.svg")}
+            icons={searchFieldIcons}
             clearButtonMode='always'
         />
         <FlatList
