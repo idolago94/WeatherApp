@@ -8,5 +8,7 @@
         "max_temprature": "Max Temprature:",
         "min_temprature": "Min Temprature:",
         "feels_like": "Feels like:"
-    }
+    },
+    "cities_header_screen": "List",
+    "city_details_header_screen": "City Details"
 }
