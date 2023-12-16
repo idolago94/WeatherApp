@@ -11,5 +11,7 @@
         "fetchWeatherFailed": "Something went wrong!"
     },
     "cities_header_screen": "List",
-    "city_details_header_screen": "City Details"
+    "city_details_header_screen": "City Details",
+    "international_unit": "International",
+    "imperial_unit": "Imperial"
 }

@@ -8,6 +8,7 @@ import { EmptyListMessage } from "./EmptyListMessage";
 import { GlobalStyles } from "@constants";
 import ModalSelector from 'react-native-modal-selector'
 import { SortKeys, getSortFunctionByKey } from "@utils";
+import { UnitsSwitch } from "@components/UnitsSwitch";
 
 type SortItem = {
     key: string
@@ -81,6 +82,9 @@ export const CitiesListScreen = () => {
             onChange={onSortChange}
             customSelector={<View />}
         />
+        <View style={styles.unitsSwitchWrap}>
+            <UnitsSwitch />
+        </View>
     </View>
 }
 
@@ -88,5 +92,13 @@ const styles = StyleSheet.create({
     cardWrap: {
         margin: 7,
         aspectRatio: 1,
+    },
+    unitsSwitchWrap: {
+        flex: 0,
+        position: 'absolute',
+        bottom: 30,
+        left: 30,
+        borderRadius: 10,
+        overflow: 'hidden'
     }
 });
