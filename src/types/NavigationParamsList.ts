@@ -1,6 +1,8 @@
 import { ScreenNames } from "@constants";
+import { City } from "./City";
 
 
 export type NavigationParamsList = {
-  [ScreenNames.CITY_DETAILS]: undefined;
+  [ScreenNames.CITIES]: undefined
+  [ScreenNames.CITY_DETAILS]: City;
 };
