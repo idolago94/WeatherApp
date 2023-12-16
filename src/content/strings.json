@@ -1,5 +1,12 @@
 {
     "empty_cities_list": "Cities not found!",
     "sort_by_city_name": "City name",
-    "sort_by_close_to_tlv": "Close to TLV"
+    "sort_by_close_to_tlv": "Close to TLV",
+    "weatherContent": {
+        "temprature": "Temprature:",
+        "weather": "Weather:",
+        "max_temprature": "Max Temprature:",
+        "min_temprature": "Min Temprature:",
+        "feels_like": "Feels like:"
+    }
 }

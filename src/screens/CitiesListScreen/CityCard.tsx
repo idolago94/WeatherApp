@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         overflow: 'hidden',
         padding: 3,
-        backgroundColor: '#000000c0', 
+        backgroundColor: Colors.black_65, 
         width: '100%', 
         borderRadius: 9 
     },
